@@ -5,9 +5,94 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #27374D;
+  /* color: #DDE6ED; */
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.Note
+{
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.144);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: white;
+  padding: 1rem ;
+  margin-top: 1rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.common-btn
+{
+  background-color: transparent;
+  border: 0;
+  color: white;
+  cursor: pointer;
+}
+@keyframes breath {
+  from
+  {
+    transform: scale(0.8,0.8);
+  }
+  to
+  {
+    transform: scale(1,1);
+  }
+}
+.all-notes
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+.commonBlob
+{
+  width: 450px;
+  position: fixed;
+  z-index: -1;
+  animation: breath 4s linear 0s infinite alternate;
+}
+.first
+{
+  top: -100px;
+  left: -200px;
+}
+.second
+{
+  top: -100px;
+  right: -200px;
+}
+.third
+{
+  bottom: -100px;
+  left: -200px;
+}
+.fourth
+{
+  bottom: 200px;
+  right: -200px;
+}
+.pass-div
+{
+  position: relative;
+}
+.pass-div button
+{
+  position: absolute;
+  top: 0;
+  right: 6px;
+  z-index: 99;
+  color: #2e3235;
+}
+.pass-btn
+{
+  background-color: transparent;
+  border: 0;
+  font-size: 1.3rem;
 }

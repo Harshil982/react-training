@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import Blobs from './Components/Blobs';
+import CreateNote from './Components/CreateNote';
+import Posts from './Components/Posts';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+import Header from './Components/Header/Header';
+import { createContext, useState } from 'react';
+
+export const DataContext = createContext()
 
 function App() {
+  const [Data, setData] = useState("Data")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataContext.Provider value={Data} >
+      <BrowserRouter>
+      {/* <Blobs /> */}
+        <Header />
+        <Routes>
+          <Route path="/createNote" element={<CreateNote />} />
+          <Route path="/" element={<Posts />} />
+        </Routes>
+      </BrowserRouter>
+    </DataContext.Provider>
   );
 }
 
