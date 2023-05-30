@@ -3,11 +3,24 @@ import Note from './Note'
 import UpdateModal from './UpdateModal'
 import NoteForm from './NoteForm'
 // import DateRangePicker from 'rsuite/DateRangePicker';
-
-
-
+const options = [
+    { value: 'CSK', label: 'CSK' },
+    { value: 'GT', label: 'GT' },
+    { value: 'RCB', label: 'RCB' },
+    { value: 'MI', label: 'MI' },
+    { value: 'RR', label: 'RR' },
+    { value: 'DC', label: 'DC' },
+]
 const CreateNote = () => {
-    
+    const [updateInitialValues,setupdateInitialValues] = useState({
+        userNote: "",
+        userName: "",
+        userEmail: "",
+        userPassword: "",
+        date: "",
+        daterange : "",
+        food : ""
+    })
     const [updatenote, setupdatenote] = useState('')
     const [allNotes, setAllnotes] = useState([])
     const [Uid, setUid] = useState()
@@ -19,14 +32,28 @@ const CreateNote = () => {
     }
     const setDataInModal = (uid) => {
         let targetNote = allNotes.find(n => n.id === uid)
-        console.log(targetNote.title)
+        setupdateInitialValues({
+            userNote: targetNote.title,
+            userName: targetNote.name,
+            userEmail: targetNote.email,
+            userPassword: targetNote.password,
+            date: targetNote.date,
+            daterange : targetNote.daterange,
+            food : targetNote.food
+        })
         setupdatenote(targetNote.title)
         setUid(uid)
     }
 
     const noteUpdation = () => {
         let targetNote = allNotes.find(n => n.id === Uid);
-        targetNote.title = updatenote;
+        targetNote.title = updateInitialValues.userNote;
+        targetNote.name = updateInitialValues.userName;
+        targetNote.email = updateInitialValues.userEmail;
+        targetNote.password = updateInitialValues.userPassword;
+        targetNote.date = updateInitialValues.date;
+        targetNote.food = updateInitialValues.food;
+        targetNote.daterange = updateInitialValues.daterange
         console.log(targetNote)
         setAllnotes([...allNotes])
     }
@@ -35,9 +62,9 @@ const CreateNote = () => {
         <div>
             <h1 className='mt-4 mx-3 text-white' >CRUD Application</h1>
             {/* Modal for note updation */}
-            <UpdateModal updatenoteVal={updatenote} setupdatenote={setupdatenote} noteUpdation={noteUpdation} />
+            <UpdateModal options={options} updatenoteVal={updatenote} setupdatenote={setupdatenote} noteUpdation={noteUpdation} updateInitialValues={updateInitialValues} setAllnotes={setAllnotes} allNotes={allNotes} setupdateInitialValues={setupdateInitialValues} />
 
-            <NoteForm allNotes={allNotes} setAllnotes={setAllnotes} />
+            <NoteForm options={options} allNotes={allNotes} setAllnotes={setAllnotes} updateInitialValues={updateInitialValues} />
             {
                 allNotes.length !== 0
                     ?

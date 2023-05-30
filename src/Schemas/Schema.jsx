@@ -2,7 +2,6 @@ import * as Yup from "yup"
 
 const date = new Date();
 const todayDate = date.toLocaleDateString();
-console.log(todayDate)
 
 const validFileExtensions = { file: ['csv'], image: ['jpg', 'png'] };
 
@@ -16,7 +15,7 @@ const MAX_FILE_SIZE = 102400;
 const MAX_IMAGE_SIZE = 2048000;
 export const CustomSchema = Yup.object().shape({
     userNote: Yup.string().min(5, "Note should be of minimum 5 characters").required("Please Enter Your Note"),
-    userName: Yup.string().min(2, "Name should be of minimum 2 characters").max(30, "Note should be of maximum 30 characters").required("Please Enter Your Name").matches(/^[A-Za-z]+$/,'Numbers kya thi aya bhai name ma'),
+    userName: Yup.string().min(2, "Name should be of minimum 2 characters").max(30, "Note should be of maximum 30 characters").required("Please Enter Your Name").matches(/^[A-Za-z]+$/,'Numbers not allowed in name'),
     userEmail: Yup.string().email('Enter Valid email').required("Enter Your Email"),
     userPassword: Yup.string().min(8).required("Please Enter Password").matches(/[0-9]{2}/, 'Password requires two numbers')
         .matches(/[a-z]/, 'Password requires a lowercase letter')
@@ -39,5 +38,5 @@ export const CustomSchema = Yup.object().shape({
         .test("is-valid-size", "Max size of photo shold be 2MB ",
             value => value && value.size <= MAX_IMAGE_SIZE),
     daterange : Yup.mixed().required("Pick a date range"),
-    food : Yup.string().required('Please select a food')
+    food : Yup.string().required('Please select Your team')
 });

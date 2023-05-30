@@ -9,6 +9,9 @@ const Note = ({data,setDataInModal,deleteNote}) => {
             <p>name : {data.name}</p>
             <p>email : {data.email}</p>
             <p>password : {data.password}</p>
+            <p>date : {data.date}</p>
+            <p>daterange : {data.daterange}</p>
+            <p>Fav Team : {data.food}</p>
             <div className='d-flex justify-content-end' >
                 <button onClick={() => setDataInModal(data.id)} className='common-btn' data-bs-toggle="modal" data-bs-target="#exampleModal" ><MdModeEditOutline /></button>
                 <button onClick={() => deleteNote(data.id)} className='common-btn' ><FaTrashAlt /></button>
